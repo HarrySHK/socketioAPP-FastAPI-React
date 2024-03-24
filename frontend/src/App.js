@@ -4,7 +4,7 @@ import Chat from './Chat';
 function App() {
   return (
 <>
-<h1>SOCKETIO APP</h1>
+<h1 style={{textAlign:'center'}}>SOCKETIO APP</h1>
 <Chat/>
 </>
   );

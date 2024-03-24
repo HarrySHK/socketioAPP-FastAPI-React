@@ -17,11 +17,24 @@ async def connect(sid, environ, auth):
     await sio_server.emit('join', {'sid': sid})
 
 
+# @sio_server.event
+# async def chat(sid, message):
+#     await sio_server.emit('chat', {'sid': sid, 'message': message})
+    
 @sio_server.event
-async def chat(sid, message):
+async def chat(sid, data):
+    message = data.get('message')
+    file_data = data.get('file')
+    
+    if file_data:
+        # Process file data here (save to disk, etc.)
+        # For demonstration, let's print the file information
+        print("Received file:", file_data)
+    
     await sio_server.emit('chat', {'sid': sid, 'message': message})
 
 
 @sio_server.event
 async def disconnect(sid):
     print(f'{sid}: disconnected')
+
